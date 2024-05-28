@@ -1,16 +1,18 @@
+// Añadir un evento al input de archivo para cambiar el mensaje de placeholder cuando se seleccione una imagen
 document.getElementById('file-input').addEventListener('change', function (event) {
     const fileInput = event.target;
     const messagePlaceholder = document.getElementById('message-placeholder');
 
     if (fileInput.files.length > 0) {
-        messagePlaceholder.textContent = "Imagen cargada";
+        messagePlaceholder.textContent = "Imagen cargada";  // Cambiar mensaje cuando una imagen está cargada
     } else {
-        messagePlaceholder.textContent = "Cargue una imagen";
+        messagePlaceholder.textContent = "Cargue una imagen";  // Restaurar mensaje si no hay imagen cargada
     }
 });
 
+// Añadir un evento al formulario para manejar la subida de la imagen
 document.getElementById('upload-form').addEventListener('submit', async function (event) {
-    event.preventDefault();
+    event.preventDefault();  // Prevenir el comportamiento por defecto del formulario
 
     const fileInput = document.getElementById('file-input');
     const messagePlaceholder = document.getElementById('message-placeholder');
@@ -18,21 +20,23 @@ document.getElementById('upload-form').addEventListener('submit', async function
     const loading = document.getElementById('loading');
 
     if (fileInput.files.length === 0) {
-        messagePlaceholder.textContent = "No ha cargado una imagen";
+        messagePlaceholder.textContent = "No ha cargado una imagen";  // Mostrar mensaje si no se ha cargado ninguna imagen
         return;
     }
 
-    messagePlaceholder.style.display = "none";
-    loading.style.display = 'flex';
+    messagePlaceholder.style.display = "none";  // Ocultar el mensaje de placeholder
+    loading.style.display = 'flex';  // Mostrar la barra de carga
 
     const chatBox = document.getElementById('chat-box');
     const sentimentHistory = document.getElementById('sentiment-history');
 
+    // Crear un mensaje en el chat indicando que el usuario ha mandado una imagen
     const userMessage = document.createElement('div');
     userMessage.className = 'message user';
-    userMessage.innerHTML = '<div class="text">Usuario: ha mandado un mensaje</div>';
+    userMessage.innerHTML = '<div class="text">Usuario: ha mandado una imagen</div>';
     chatBox.appendChild(userMessage);
 
+    // Simulación de progreso de la barra de carga
     const progressInterval = setInterval(() => {
         if (progressBarFill.style.width === "100%") {
             clearInterval(progressInterval);
@@ -41,22 +45,27 @@ document.getElementById('upload-form').addEventListener('submit', async function
         }
     }, 500);
 
+    // Crear un objeto FormData y añadir el archivo de imagen
     const formData = new FormData();
     formData.append('file', fileInput.files[0]);
 
+    // Enviar la imagen al servidor para predecir el sentimiento
     const response = await fetch('/predict', {
         method: 'POST',
         body: formData
     });
 
+    // Obtener la respuesta del servidor
     const result = await response.json();
 
+    // Detener la barra de progreso y completar la animación de carga
     clearInterval(progressInterval);
     progressBarFill.style.width = "100%";
     setTimeout(() => {
         loading.style.display = 'none';
         progressBarFill.style.width = "0%";
 
+        // Mostrar la imagen cargada en el chat
         const userImageMessage = document.createElement('div');
         userImageMessage.className = 'message user';
         const userImage = document.createElement('img');
@@ -64,18 +73,29 @@ document.getElementById('upload-form').addEventListener('submit', async function
         userImageMessage.appendChild(userImage);
         chatBox.appendChild(userImageMessage);
 
+        // Mostrar el mensaje del bot con el sentimiento detectado
         const botMessage = document.createElement('div');
         botMessage.className = 'message bot';
-        botMessage.innerHTML = `<div class="text">Bot: El sentimiento detectado es ${result.sentiment}</div>`;
+        if (result.sentiment) {
+            botMessage.innerHTML = `<div class="text">Bot: El sentimiento detectado es ${result.sentiment}</div>`;
+        } else {
+            botMessage.innerHTML = `<div class="text">Bot: No se detectó ningún rostro en la imagen.</div>`;
+        }
         chatBox.appendChild(botMessage);
 
+        // Añadir el resultado al historial de sentimientos
         const historyItem = document.createElement('li');
-        historyItem.textContent = `Sentimiento: ${result.sentiment}`;
+        if (result.sentiment) {
+            historyItem.textContent = `Sentimiento: ${result.sentiment}`;
+        } else {
+            historyItem.textContent = `Sentimiento: No se detectó ningún rostro`;
+        }
         sentimentHistory.appendChild(historyItem);
 
+        // Desplazar el chat hacia abajo para mostrar el nuevo mensaje
         chatBox.scrollTop = chatBox.scrollHeight;
 
-        // Limpiar input de archivo y vista previa
+        // Limpiar el input de archivo y restaurar el placeholder
         fileInput.value = '';
         messagePlaceholder.style.display = "block";
         messagePlaceholder.textContent = "Cargue una imagen";
@@ -95,7 +115,7 @@ document.addEventListener('paste', function (event) {
             dataTransfer.items.add(file);
             fileInput.files = dataTransfer.files;
 
-            messagePlaceholder.textContent = "Imagen cargada";
+            messagePlaceholder.textContent = "Imagen cargada";  // Cambiar mensaje cuando una imagen está pegada
         }
     }
 });

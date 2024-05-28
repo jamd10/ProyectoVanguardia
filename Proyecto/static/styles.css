@@ -1,181 +1,309 @@
+/* Estilos generales para el cuerpo */
 body {
     font-family: 'Roboto', sans-serif;
+    /* Fuente de Google Fonts */
     background-color: #343541;
+    /* Color de fondo del cuerpo */
     color: #fff;
+    /* Color del texto */
     margin: 0;
+    /* Sin márgenes */
     display: flex;
+    /* Usar display flex para el contenedor */
     height: 100vh;
+    /* Altura del viewport */
     width: 100vw;
+    /* Ancho del viewport */
 }
 
+/* Contenedor principal del chat */
 .chat-container {
     display: flex;
+    /* Usar display flex para los elementos hijos */
     width: 100%;
+    /* Ancho completo */
     height: 100%;
+    /* Altura completa */
     background-color: #444654;
+    /* Color de fondo del contenedor */
     overflow: hidden;
+    /* Ocultar desbordamiento */
 }
 
+/* Barra lateral del chat */
 .chat-sidebar {
-    width: 15%; /* Reduce el tamaño del historial */
+    width: 15%;
+    /* Ancho del 15% */
     background-color: #202123;
+    /* Color de fondo */
     padding: 20px;
+    /* Relleno interno */
     overflow-y: auto;
+    /* Barra de desplazamiento vertical */
 }
 
+/* Título de la barra lateral */
 .chat-sidebar h2 {
     margin-top: 0;
+    /* Sin margen superior */
     font-size: 1.2em;
+    /* Tamaño de fuente */
 }
 
+/* Lista en la barra lateral */
 .chat-sidebar ul {
     list-style: none;
+    /* Sin estilo de lista */
     padding: 0;
+    /* Sin relleno interno */
     margin: 0;
+    /* Sin márgenes */
 }
 
+/* Elementos de la lista en la barra lateral */
 .chat-sidebar li {
     margin: 10px 0;
+    /* Margen vertical */
     padding: 10px;
+    /* Relleno interno */
     background-color: #343541;
+    /* Color de fondo */
     border-radius: 5px;
+    /* Bordes redondeados */
     font-size: 0.9em;
+    /* Tamaño de fuente */
 }
 
+/* Área principal del chat */
 .chat-main {
-    width: 85%; /* Aumenta el tamaño del área principal */
+    width: 85%;
+    /* Ancho del 85% */
     display: flex;
+    /* Usar display flex para los elementos hijos */
     flex-direction: column;
+    /* Colocar elementos en columna */
 }
 
+/* Encabezado del área principal del chat */
 .chat-header {
     background-color: #202123;
+    /* Color de fondo */
     padding: 20px;
+    /* Relleno interno */
     text-align: center;
+    /* Texto centrado */
 }
 
+/* Título del encabezado del chat */
 .chat-header h1 {
     margin: 0;
+    /* Sin márgenes */
     font-size: 1.5em;
+    /* Tamaño de fuente */
 }
 
+/* Caja del chat donde aparecerán los mensajes */
 .chat-box {
     flex-grow: 1;
+    /* Permitir que crezca */
     padding: 20px;
+    /* Relleno interno */
     overflow-y: auto;
-    position: relative; /* Para posicionar la barra de progreso */
+    /* Barra de desplazamiento vertical */
+    position: relative;
+    /* Posición relativa */
 }
 
+/* Vista previa de la imagen */
 .image-preview {
     display: flex;
+    /* Usar display flex para los elementos hijos */
     justify-content: center;
+    /* Centrar horizontalmente */
     align-items: center;
+    /* Centrar verticalmente */
     margin-bottom: 20px;
+    /* Margen inferior */
 }
 
+/* Imagen dentro de la vista previa */
 .image-preview img {
-    max-width: 200px; /* Reduce el tamaño de la imagen */
+    max-width: 200px;
+    /* Ancho máximo */
     border-radius: 10px;
+    /* Bordes redondeados */
 }
 
+/* Mensajes en la caja del chat */
 .chat-box .message {
     margin: 10px 0;
+    /* Margen vertical */
     display: flex;
+    /* Usar display flex para los elementos hijos */
     flex-direction: column;
+    /* Colocar elementos en columna */
 }
 
+/* Mensaje del usuario */
 .chat-box .message.user .text {
     align-self: flex-end;
+    /* Alinear al final del contenedor */
     background-color: #007bff;
+    /* Color de fondo */
     color: #fff;
+    /* Color del texto */
 }
 
+/* Mensaje del bot */
 .chat-box .message.bot .text {
     align-self: flex-start;
+    /* Alinear al inicio del contenedor */
     background-color: #444654;
+    /* Color de fondo */
     color: #fff;
+    /* Color del texto */
 }
 
+/* Imagen dentro del mensaje */
 .chat-box .message img {
-    max-width: 200px; /* Reduce el tamaño de las imágenes en el chat */
+    max-width: 200px;
+    /* Ancho máximo */
     border-radius: 10px;
+    /* Bordes redondeados */
     margin-top: 10px;
+    /* Margen superior */
 }
 
+/* Texto dentro del mensaje */
 .chat-box .message .text {
     padding: 10px;
+    /* Relleno interno */
     border-radius: 10px;
+    /* Bordes redondeados */
     max-width: 80%;
+    /* Ancho máximo */
     word-wrap: break-word;
+    /* Ajuste de palabras */
 }
 
+/* Estilos para el formulario de subida de imágenes */
 form {
     display: flex;
+    /* Usar display flex para los elementos hijos */
     align-items: center;
+    /* Alinear elementos verticalmente */
     padding: 20px;
+    /* Relleno interno */
     background-color: #202123;
+    /* Color de fondo */
     border-top: 1px solid #444654;
+    /* Borde superior */
 }
 
+/* Etiqueta para el input de archivo */
 .file-input-label {
     cursor: pointer;
+    /* Cambiar cursor al pasar sobre el elemento */
     color: #007bff;
+    /* Color del texto */
     display: flex;
+    /* Usar display flex para los elementos hijos */
     align-items: center;
+    /* Alinear elementos verticalmente */
     margin-right: 10px;
+    /* Margen derecho */
 }
 
+/* Icono de clip */
 .clip-icon {
     font-size: 24px;
+    /* Tamaño de fuente */
     margin-right: 5px;
+    /* Margen derecho */
 }
 
+/* Input de archivo oculto */
 input[type="file"] {
     display: none;
+    /* Ocultar el input */
 }
 
+/* Placeholder para el mensaje */
 .message-placeholder {
     flex-grow: 1;
+    /* Permitir que crezca */
     text-align: center;
-    color: #fff; /* Texto en blanco */
+    /* Texto centrado */
+    color: #fff;
+    /* Color del texto */
 }
 
+/* Botón de envío */
 .submit-button {
     padding: 10px;
+    /* Relleno interno */
     border: none;
+    /* Sin borde */
     border-radius: 50%;
+    /* Bordes redondeados */
     background-color: #fff;
+    /* Color de fondo */
     color: #007bff;
+    /* Color del texto */
     cursor: pointer;
+    /* Cambiar cursor al pasar sobre el elemento */
     font-size: 1.2em;
+    /* Tamaño de fuente */
     width: 40px;
+    /* Ancho */
     height: 40px;
+    /* Altura */
     display: flex;
+    /* Usar display flex para los elementos hijos */
     justify-content: center;
+    /* Centrar horizontalmente */
     align-items: center;
+    /* Centrar verticalmente */
 }
 
+/* Estilos al pasar el cursor sobre el botón de envío */
 .submit-button:hover {
     background-color: #f0f0f0;
+    /* Cambiar color de fondo */
 }
 
+/* Contenedor de carga */
 #loading {
-    width: 100%; /* Ocupa el mismo ancho que el texto */
+    width: 100%;
+    /* Ancho completo */
     display: flex;
+    /* Usar display flex para los elementos hijos */
     justify-content: center;
+    /* Centrar horizontalmente */
     align-items: center;
+    /* Centrar verticalmente */
 }
 
+/* Barra de progreso */
 .progress-bar {
-    width: 80px; /* Reduce el tamaño de la barra de progreso */
-    background-color: #444654; /* Fondo para mayor contraste */
+    width: 80px;
+    /* Ancho */
+    background-color: #444654;
+    /* Color de fondo */
     border-radius: 5px;
+    /* Bordes redondeados */
 }
 
+/* Relleno de la barra de progreso */
 .progress-bar-fill {
-    height: 5px; /* Reduce la altura de la barra de progreso */
-    background-color: #fff; /* Barra de progreso en blanco */
+    height: 5px;
+    /* Altura */
+    background-color: #fff;
+    /* Color de fondo */
     border-radius: 5px;
+    /* Bordes redondeados */
     width: 0%;
+    /* Ancho inicial */
     transition: width 0.5s;
+    /* Transición del ancho */
 }
