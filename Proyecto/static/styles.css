@@ -1,309 +1,240 @@
-/* Estilos generales para el cuerpo */
+/* Estilos generales */
 body {
     font-family: 'Roboto', sans-serif;
-    /* Fuente de Google Fonts */
-    background-color: #343541;
-    /* Color de fondo del cuerpo */
-    color: #fff;
-    /* Color del texto */
+    background-color: #f0f2f5;
+    color: #333;
     margin: 0;
-    /* Sin márgenes */
     display: flex;
-    /* Usar display flex para el contenedor */
     height: 100vh;
-    /* Altura del viewport */
     width: 100vw;
-    /* Ancho del viewport */
+    justify-content: center;
+    align-items: center;
 }
 
-/* Contenedor principal del chat */
 .chat-container {
     display: flex;
-    /* Usar display flex para los elementos hijos */
-    width: 100%;
-    /* Ancho completo */
-    height: 100%;
-    /* Altura completa */
-    background-color: #444654;
-    /* Color de fondo del contenedor */
+    width: 90%;
+    height: 90%;
+    background-color: #ffffff;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
     overflow: hidden;
-    /* Ocultar desbordamiento */
+    transition: all 0.3s ease;
 }
 
-/* Barra lateral del chat */
+.chat-container:hover {
+    box-shadow: 0 6px 25px rgba(0, 0, 0, 0.2);
+}
+
 .chat-sidebar {
-    width: 15%;
-    /* Ancho del 15% */
-    background-color: #202123;
-    /* Color de fondo */
+    width: 25%;
+    background-color: #007bff;
+    color: #ffffff;
     padding: 20px;
-    /* Relleno interno */
     overflow-y: auto;
-    /* Barra de desplazamiento vertical */
+    transition: background-color 0.3s ease;
 }
 
-/* Título de la barra lateral */
+.chat-sidebar:hover {
+    background-color: #0056b3;
+}
+
 .chat-sidebar h2 {
     margin-top: 0;
-    /* Sin margen superior */
-    font-size: 1.2em;
-    /* Tamaño de fuente */
+    font-size: 1.4em;
+    font-weight: 700;
 }
 
-/* Lista en la barra lateral */
 .chat-sidebar ul {
     list-style: none;
-    /* Sin estilo de lista */
     padding: 0;
-    /* Sin relleno interno */
     margin: 0;
-    /* Sin márgenes */
 }
 
-/* Elementos de la lista en la barra lateral */
 .chat-sidebar li {
     margin: 10px 0;
-    /* Margen vertical */
     padding: 10px;
-    /* Relleno interno */
-    background-color: #343541;
-    /* Color de fondo */
+    background-color: #0056b3;
     border-radius: 5px;
-    /* Bordes redondeados */
-    font-size: 0.9em;
-    /* Tamaño de fuente */
+    font-size: 1em;
+    transition: background-color 0.3s ease, transform 0.3s ease;
 }
 
-/* Área principal del chat */
+.chat-sidebar li:hover {
+    background-color: #004094;
+    transform: translateX(10px);
+}
+
 .chat-main {
-    width: 85%;
-    /* Ancho del 85% */
+    width: 75%;
     display: flex;
-    /* Usar display flex para los elementos hijos */
     flex-direction: column;
-    /* Colocar elementos en columna */
 }
 
-/* Encabezado del área principal del chat */
 .chat-header {
-    background-color: #202123;
-    /* Color de fondo */
+    background-color: #343a40;
+    color: #ffffff;
     padding: 20px;
-    /* Relleno interno */
     text-align: center;
-    /* Texto centrado */
+    border-bottom: 1px solid #e9ecef;
 }
 
-/* Título del encabezado del chat */
 .chat-header h1 {
     margin: 0;
-    /* Sin márgenes */
-    font-size: 1.5em;
-    /* Tamaño de fuente */
+    font-size: 1.8em;
 }
 
-/* Caja del chat donde aparecerán los mensajes */
 .chat-box {
     flex-grow: 1;
-    /* Permitir que crezca */
     padding: 20px;
-    /* Relleno interno */
     overflow-y: auto;
-    /* Barra de desplazamiento vertical */
-    position: relative;
-    /* Posición relativa */
+    background-color: #f8f9fa;
 }
 
-/* Vista previa de la imagen */
-.image-preview {
-    display: flex;
-    /* Usar display flex para los elementos hijos */
-    justify-content: center;
-    /* Centrar horizontalmente */
-    align-items: center;
-    /* Centrar verticalmente */
-    margin-bottom: 20px;
-    /* Margen inferior */
-}
-
-/* Imagen dentro de la vista previa */
-.image-preview img {
-    max-width: 200px;
-    /* Ancho máximo */
-    border-radius: 10px;
-    /* Bordes redondeados */
-}
-
-/* Mensajes en la caja del chat */
 .chat-box .message {
     margin: 10px 0;
-    /* Margen vertical */
     display: flex;
-    /* Usar display flex para los elementos hijos */
     flex-direction: column;
-    /* Colocar elementos en columna */
+    opacity: 0;
+    animation: fadeIn 0.5s forwards;
 }
 
-/* Mensaje del usuario */
+@keyframes fadeIn {
+    to {
+        opacity: 1;
+    }
+}
+
 .chat-box .message.user .text {
     align-self: flex-end;
-    /* Alinear al final del contenedor */
     background-color: #007bff;
-    /* Color de fondo */
-    color: #fff;
-    /* Color del texto */
+    color: #ffffff;
+    padding: 10px;
+    border-radius: 10px;
+    max-width: 80%;
+    word-wrap: break-word;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
 }
 
-/* Mensaje del bot */
 .chat-box .message.bot .text {
     align-self: flex-start;
-    /* Alinear al inicio del contenedor */
-    background-color: #444654;
-    /* Color de fondo */
-    color: #fff;
-    /* Color del texto */
+    background-color: #6c757d;
+    color: #ffffff;
+    padding: 10px;
+    border-radius: 10px;
+    max-width: 80%;
+    word-wrap: break-word;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
 }
 
-/* Imagen dentro del mensaje */
 .chat-box .message img {
     max-width: 200px;
-    /* Ancho máximo */
     border-radius: 10px;
-    /* Bordes redondeados */
     margin-top: 10px;
-    /* Margen superior */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
 }
 
-/* Texto dentro del mensaje */
-.chat-box .message .text {
-    padding: 10px;
-    /* Relleno interno */
-    border-radius: 10px;
-    /* Bordes redondeados */
-    max-width: 80%;
-    /* Ancho máximo */
-    word-wrap: break-word;
-    /* Ajuste de palabras */
-}
-
-/* Estilos para el formulario de subida de imágenes */
 form {
     display: flex;
-    /* Usar display flex para los elementos hijos */
     align-items: center;
-    /* Alinear elementos verticalmente */
     padding: 20px;
-    /* Relleno interno */
-    background-color: #202123;
-    /* Color de fondo */
-    border-top: 1px solid #444654;
-    /* Borde superior */
+    background-color: #ffffff;
+    border-top: 1px solid #e9ecef;
 }
 
-/* Etiqueta para el input de archivo */
 .file-input-label {
     cursor: pointer;
-    /* Cambiar cursor al pasar sobre el elemento */
     color: #007bff;
-    /* Color del texto */
     display: flex;
-    /* Usar display flex para los elementos hijos */
     align-items: center;
-    /* Alinear elementos verticalmente */
     margin-right: 10px;
-    /* Margen derecho */
+    transition: color 0.3s ease;
 }
 
-/* Icono de clip */
+.file-input-label:hover {
+    color: #0056b3;
+}
+
 .clip-icon {
     font-size: 24px;
-    /* Tamaño de fuente */
     margin-right: 5px;
-    /* Margen derecho */
 }
 
-/* Input de archivo oculto */
 input[type="file"] {
     display: none;
-    /* Ocultar el input */
 }
 
-/* Placeholder para el mensaje */
 .message-placeholder {
     flex-grow: 1;
-    /* Permitir que crezca */
     text-align: center;
-    /* Texto centrado */
-    color: #fff;
-    /* Color del texto */
+    color: #6c757d;
 }
 
-/* Botón de envío */
 .submit-button {
     padding: 10px;
-    /* Relleno interno */
     border: none;
-    /* Sin borde */
     border-radius: 50%;
-    /* Bordes redondeados */
-    background-color: #fff;
-    /* Color de fondo */
-    color: #007bff;
-    /* Color del texto */
+    background-color: #007bff;
+    color: #ffffff;
     cursor: pointer;
-    /* Cambiar cursor al pasar sobre el elemento */
     font-size: 1.2em;
-    /* Tamaño de fuente */
     width: 40px;
-    /* Ancho */
     height: 40px;
-    /* Altura */
     display: flex;
-    /* Usar display flex para los elementos hijos */
     justify-content: center;
-    /* Centrar horizontalmente */
     align-items: center;
-    /* Centrar verticalmente */
+    transition: background-color 0.3s ease, transform 0.3s ease;
 }
 
-/* Estilos al pasar el cursor sobre el botón de envío */
 .submit-button:hover {
-    background-color: #f0f0f0;
-    /* Cambiar color de fondo */
+    background-color: #0056b3;
+    transform: scale(1.1);
 }
 
-/* Contenedor de carga */
 #loading {
     width: 100%;
-    /* Ancho completo */
     display: flex;
-    /* Usar display flex para los elementos hijos */
     justify-content: center;
-    /* Centrar horizontalmente */
     align-items: center;
-    /* Centrar verticalmente */
 }
 
-/* Barra de progreso */
 .progress-bar {
     width: 80px;
-    /* Ancho */
-    background-color: #444654;
-    /* Color de fondo */
+    background-color: #e9ecef;
     border-radius: 5px;
-    /* Bordes redondeados */
+    overflow: hidden;
 }
 
-/* Relleno de la barra de progreso */
 .progress-bar-fill {
     height: 5px;
-    /* Altura */
-    background-color: #fff;
-    /* Color de fondo */
+    background-color: #007bff;
     border-radius: 5px;
-    /* Bordes redondeados */
     width: 0%;
-    /* Ancho inicial */
     transition: width 0.5s;
-    /* Transición del ancho */
+}
+
+/* Estilos para notificaciones */
+.notification {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    background-color: #28a745;
+    color: white;
+    padding: 10px 20px;
+    border-radius: 5px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    opacity: 0;
+    transform: translateY(-20px);
+    animation: slideIn 0.5s forwards;
+}
+
+@keyframes slideIn {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.notification.error {
+    background-color: #dc3545;
 }
